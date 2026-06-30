@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D1117"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="LoggerBuddy Console"
+            android:textColor="#F3F4F6"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/clearConsoleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:backgroundTint="#EF4444"
+            android:text="Clear"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/statsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="16dp"
+        android:text="0 logs captured"
+        android:textColor="#9CA3AF"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/emptyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="48dp"
+        android:paddingBottom="48dp"
+        android:text="📄\n\nNo logs captured yet.\nAdd some logs from the demo app."
+        android:textAlignment="center"
+        android:textColor="#9CA3AF"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/logsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+
+</LinearLayout>

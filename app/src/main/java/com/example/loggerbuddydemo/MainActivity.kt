@@ -1,20 +1,65 @@
 package com.example.loggerbuddydemo
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.loggerbuddy.LogLevel
+import com.example.loggerbuddy.LoggerBuddy
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var messageEditText: EditText
+    private lateinit var tagEditText: EditText
+    private lateinit var levelRadioGroup: RadioGroup
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        LoggerBuddy.initialize(this)
+
+        messageEditText = findViewById(R.id.messageEditText)
+        tagEditText = findViewById(R.id.tagEditText)
+        levelRadioGroup = findViewById(R.id.levelRadioGroup)
+
+        findViewById<Button>(R.id.addLogButton).setOnClickListener {
+            addCustomLog()
         }
+
+        findViewById<Button>(R.id.openConsoleButton).setOnClickListener {
+            LoggerBuddy.showConsole(this)
+        }
+
+        findViewById<Button>(R.id.clearLogsButton).setOnClickListener {
+            LoggerBuddy.clearLogs()
+            Toast.makeText(this, "Logs cleared", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun addCustomLog() {
+        val message = messageEditText.text.toString().trim()
+            .ifEmpty { "Demo log message" }
+
+        val tag = tagEditText.text.toString().trim()
+            .ifEmpty { "MainActivity" }
+
+        val level = when (levelRadioGroup.checkedRadioButtonId) {
+            R.id.warningRadioButton -> LogLevel.WARNING
+            R.id.errorRadioButton -> LogLevel.ERROR
+            R.id.debugRadioButton -> LogLevel.DEBUG
+            else -> LogLevel.INFO
+        }
+
+        LoggerBuddy.log(
+            message = message,
+            tag = tag,
+            level = level
+        )
+
+        Toast.makeText(this, "Log added", Toast.LENGTH_SHORT).show()
+        messageEditText.text.clear()
     }
 }
