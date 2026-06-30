@@ -9,6 +9,8 @@ local.properties
 # IDE
 .idea/
 *.iml
+!.idea/codeStyles/
+!.idea/codeStyles/*
 
 # Log files
 *.log
