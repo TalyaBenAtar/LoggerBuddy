@@ -35,10 +35,6 @@ class LogViewerActivity : AppCompatActivity() {
     private fun displayLogs() {
         val logs = LoggerBuddy.getLogs()
 
-//        val infoCount = logs.count { it.level.name == "INFO" }
-//        val warningCount = logs.count { it.level.name == "WARNING" }
-//        val errorCount = logs.count { it.level.name == "ERROR" }
-//        val debugCount = logs.count { it.level.name == "DEBUG" }
         val infoCount = logs.count { it.level == LogLevel.INFO }
         val warningCount = logs.count { it.level == LogLevel.WARNING }
         val errorCount = logs.count { it.level == LogLevel.ERROR }
@@ -47,7 +43,13 @@ class LogViewerActivity : AppCompatActivity() {
         statsTextView.text =
             "${logs.size} logs • $infoCount INFO • $warningCount WARN • $errorCount ERROR • $debugCount DEBUG"
 
+//        if (logs.isEmpty()) {
+//            emptyTextView.visibility = TextView.VISIBLE
+//            logsRecyclerView.visibility = RecyclerView.GONE
+//            return
+//        }
         if (logs.isEmpty()) {
+            logsRecyclerView.adapter = LogAdapter(emptyList())
             emptyTextView.visibility = TextView.VISIBLE
             logsRecyclerView.visibility = RecyclerView.GONE
             return
@@ -60,15 +62,36 @@ class LogViewerActivity : AppCompatActivity() {
         logsRecyclerView.adapter = LogAdapter(logs)
     }
 
+//    private fun showClearConfirmation() {
+//        AlertDialog.Builder(this)
+//            .setTitle("Clear all logs?")
+//            .setMessage("This action cannot be undone.")
+//            .setNegativeButton("Cancel", null)
+//            .setPositiveButton("Clear") { _, _ ->
+//                LoggerBuddy.clearLogs()
+//                displayLogs()
+//            }
+//            .show()
+//    }
     private fun showClearConfirmation() {
         AlertDialog.Builder(this)
             .setTitle("Clear all logs?")
             .setMessage("This action cannot be undone.")
             .setNegativeButton("Cancel", null)
-            .setPositiveButton("Clear") { _, _ ->
+            .setPositiveButton("Clear") { dialog, _ ->
                 LoggerBuddy.clearLogs()
-                displayLogs()
+
+                logsRecyclerView.adapter = LogAdapter(emptyList())
+                emptyTextView.visibility = TextView.VISIBLE
+                logsRecyclerView.visibility = RecyclerView.GONE
+
+                dialog.dismiss()
+
+                logsRecyclerView.post {
+                    displayLogs()
+                }
             }
             .show()
     }
+
 }

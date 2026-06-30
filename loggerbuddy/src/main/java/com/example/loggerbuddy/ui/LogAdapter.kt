@@ -1,6 +1,5 @@
 package com.example.loggerbuddy.ui
 
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +12,7 @@ import com.example.loggerbuddy.R
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import android.content.Context
 
 class LogAdapter(
     private val logs: List<LogEntry>
@@ -37,7 +37,7 @@ class LogAdapter(
 
     override fun onBindViewHolder(holder: LogViewHolder, position: Int) {
         val log = logs[position]
-        val color = colorForLevel(log.level)
+        val color = colorForLevel(holder.itemView.context, log.level)
 
         holder.level.text = log.level.name
         holder.tag.text = log.tag
@@ -49,18 +49,23 @@ class LogAdapter(
             setColor(color)
         }
 
-        holder.time.text = SimpleDateFormat(
-            "HH:mm:ss",
-            Locale.getDefault()
-        ).format(Date(log.timestamp))
+        holder.time.text = timeFormatter.format(Date(log.timestamp))
     }
 
-    private fun colorForLevel(level: LogLevel): Int {
+    private fun colorForLevel(
+        context: Context,
+        level: LogLevel
+    ): Int {
         return when (level) {
-            LogLevel.INFO -> Color.parseColor("#22C55E")
-            LogLevel.WARNING -> Color.parseColor("#F59E0B")
-            LogLevel.ERROR -> Color.parseColor("#EF4444")
-            LogLevel.DEBUG -> Color.parseColor("#3B82F6")
+            LogLevel.INFO -> context.getColor(R.color.logger_info)
+            LogLevel.WARNING -> context.getColor(R.color.logger_warning)
+            LogLevel.ERROR -> context.getColor(R.color.logger_error)
+            LogLevel.DEBUG -> context.getColor(R.color.logger_debug)
         }
     }
+
+    private val timeFormatter = SimpleDateFormat(
+        "HH:mm:ss",
+        Locale.getDefault()
+    )
 }

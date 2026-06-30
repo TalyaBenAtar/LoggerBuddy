@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0D1117"
+    android:background="@color/logger_background_dark"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="LoggerBuddy Console"
-            android:textColor="#F3F4F6"
+            android:textColor="@color/logger_title_blue"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -25,9 +25,9 @@
             android:id="@+id/clearConsoleButton"
             android:layout_width="wrap_content"
             android:layout_height="42dp"
-            android:backgroundTint="#EF4444"
+            android:backgroundTint="@color/logger_button_danger"
             android:text="Clear"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/logger_text_on_color" />
     </LinearLayout>
 
     <TextView
@@ -37,7 +37,7 @@
         android:layout_marginTop="6dp"
         android:layout_marginBottom="16dp"
         android:text="0 logs captured"
-        android:textColor="#9CA3AF"
+        android:textColor="@color/logger_text_secondary"
         android:textSize="14sp" />
 
     <TextView
@@ -49,7 +49,7 @@
         android:paddingBottom="48dp"
         android:text="📄\n\nNo logs captured yet.\nAdd some logs from the demo app."
         android:textAlignment="center"
-        android:textColor="#9CA3AF"
+        android:textColor="@color/logger_text_secondary"
         android:textSize="16sp"
         android:visibility="gone" />
 
@@ -57,7 +57,5 @@
         android:id="@+id/logsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
 
 </LinearLayout>

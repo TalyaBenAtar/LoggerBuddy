@@ -25,6 +25,26 @@ class MainActivity : AppCompatActivity() {
         tagEditText = findViewById(R.id.tagEditText)
         levelRadioGroup = findViewById(R.id.levelRadioGroup)
 
+        findViewById<Button>(R.id.loginButton).setOnClickListener {
+            LoggerBuddy.info(this, "User clicked login")
+            Toast.makeText(this, "Login log added", Toast.LENGTH_SHORT).show()
+        }
+
+        findViewById<Button>(R.id.loadDataButton).setOnClickListener {
+            LoggerBuddy.debug(this, "Loading data")
+            Toast.makeText(this, "Debug log added", Toast.LENGTH_SHORT).show()
+        }
+
+        findViewById<Button>(R.id.warningButton).setOnClickListener {
+            LoggerBuddy.warning(this, "Slow network")
+            Toast.makeText(this, "Warning log added", Toast.LENGTH_SHORT).show()
+        }
+
+        findViewById<Button>(R.id.errorButton).setOnClickListener {
+            LoggerBuddy.error(this, "Failed to save profile")
+            Toast.makeText(this, "Error log added", Toast.LENGTH_SHORT).show()
+        }
+
         findViewById<Button>(R.id.addLogButton).setOnClickListener {
             addCustomLog()
         }
@@ -32,19 +52,14 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.openConsoleButton).setOnClickListener {
             LoggerBuddy.showConsole(this)
         }
-
-        findViewById<Button>(R.id.clearLogsButton).setOnClickListener {
-            LoggerBuddy.clearLogs()
-            Toast.makeText(this, "Logs cleared", Toast.LENGTH_SHORT).show()
-        }
     }
 
     private fun addCustomLog() {
         val message = messageEditText.text.toString().trim()
             .ifEmpty { "Demo log message" }
 
-        val tag = tagEditText.text.toString().trim()
-            .ifEmpty { "MainActivity" }
+        val customTag = tagEditText.text.toString().trim()
+            .ifEmpty { null }
 
         val level = when (levelRadioGroup.checkedRadioButtonId) {
             R.id.warningRadioButton -> LogLevel.WARNING
@@ -54,12 +69,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         LoggerBuddy.log(
+            context = this,
             message = message,
-            tag = tag,
+            tag = customTag,
             level = level
         )
 
         Toast.makeText(this, "Log added", Toast.LENGTH_SHORT).show()
         messageEditText.text.clear()
+        tagEditText.text.clear()
     }
 }

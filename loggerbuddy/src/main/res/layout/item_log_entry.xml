@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    card_view:cardBackgroundColor="#161B22"
+    card_view:cardBackgroundColor="@color/logger_card_background"
     card_view:cardCornerRadius="16dp"
     card_view:cardElevation="3dp">
 
@@ -37,7 +37,7 @@
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="5dp"
                     android:text="INFO"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/logger_text_on_color"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -46,10 +46,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="end"
                     android:fontFamily="monospace"
+                    android:gravity="end"
                     android:text="16:42:00"
-                    android:textColor="#9CA3AF"
+                    android:textColor="@color/logger_text_secondary"
                     android:textSize="13sp" />
             </LinearLayout>
 
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="MainActivity"
-                android:textColor="#F3F4F6"
+                android:textColor="@color/logger_text_primary"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -69,9 +69,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:text="User clicked login"
-                android:textColor="#D1D5DB"
+                android:textColor="@color/logger_text_body"
                 android:textSize="14sp" />
 
         </LinearLayout>
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
