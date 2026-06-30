@@ -43,11 +43,6 @@ class LogViewerActivity : AppCompatActivity() {
         statsTextView.text =
             "${logs.size} logs • $infoCount INFO • $warningCount WARN • $errorCount ERROR • $debugCount DEBUG"
 
-//        if (logs.isEmpty()) {
-//            emptyTextView.visibility = TextView.VISIBLE
-//            logsRecyclerView.visibility = RecyclerView.GONE
-//            return
-//        }
         if (logs.isEmpty()) {
             logsRecyclerView.adapter = LogAdapter(emptyList())
             emptyTextView.visibility = TextView.VISIBLE
@@ -62,17 +57,7 @@ class LogViewerActivity : AppCompatActivity() {
         logsRecyclerView.adapter = LogAdapter(logs)
     }
 
-//    private fun showClearConfirmation() {
-//        AlertDialog.Builder(this)
-//            .setTitle("Clear all logs?")
-//            .setMessage("This action cannot be undone.")
-//            .setNegativeButton("Cancel", null)
-//            .setPositiveButton("Clear") { _, _ ->
-//                LoggerBuddy.clearLogs()
-//                displayLogs()
-//            }
-//            .show()
-//    }
+
     private fun showClearConfirmation() {
         AlertDialog.Builder(this)
             .setTitle("Clear all logs?")
