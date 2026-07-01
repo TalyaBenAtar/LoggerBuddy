@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
+    id("maven-publish")
 }
 
 android {
@@ -50,4 +51,18 @@ dependencies {
     // Recycled View
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.cardview:cardview:1.0.0")
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
+                from(components["release"])
+
+                groupId = "com.github.TalyaBenAtar"
+                artifactId = "LoggerBuddy"
+                version = "1.0.0"
+            }
+        }
+    }
 }
