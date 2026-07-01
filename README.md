@@ -1,4 +1,5 @@
 # 📱 LoggerBuddy
+[![](https://jitpack.io/v/TalyaBenAtar/LoggerBuddy.svg)](https://jitpack.io/#TalyaBenAtar/LoggerBuddy)
 
 > A lightweight Android logging library that allows developers to log and view application events directly from inside their app.
 
@@ -83,7 +84,34 @@ LoggerBuddy.showConsole(this)
 
 # 📦 Installation
 
-Clone or import the LoggerBuddy module into your Android project.
+LoggerBuddy is available through **JitPack**.
+
+### Step 1: Add JitPack
+
+In `settings.gradle.kts`:
+
+```kotlin
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
+    }
+}
+```
+
+### Step 2: Add LoggerBuddy
+
+In your app-level `build.gradle.kts`:
+
+```kotlin
+dependencies {
+    implementation("com.github.TalyaBenAtar:LoggerBuddy:1.0.0")
+}
+```
+
+### Step 3: Initialize LoggerBuddy
 
 Initialize LoggerBuddy once inside your `Application` or `MainActivity`.
 
