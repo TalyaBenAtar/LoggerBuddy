@@ -1,5 +1,8 @@
 # 📱 LoggerBuddy
 [![](https://jitpack.io/v/TalyaBenAtar/LoggerBuddy.svg)](https://jitpack.io/#TalyaBenAtar/LoggerBuddy)
+![Platform](https://img.shields.io/badge/Platform-Android-green)
+![Language](https://img.shields.io/badge/Kotlin-2.0-blue)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
 > A lightweight Android logging library that allows developers to log and view application events directly from inside their app.
 
@@ -272,6 +275,16 @@ Bonus: ☁️ Web dashboard
 | AndroidX | Android support libraries |
 
 ---
+
+# 📄 License
+
+This project is licensed under the **MIT License**.
+
+See the [LICENSE](LICENSE) file for full details.
+
+
+---
+
 
 # 👩‍💻 Author
 
