@@ -4,29 +4,59 @@ import android.content.Context
 import android.content.Intent
 import com.example.loggerbuddy.data.LogStorage
 import com.example.loggerbuddy.ui.LogViewerActivity
-import kotlinx.coroutines.runBlocking
 import java.io.PrintWriter
 import java.io.StringWriter
+import com.example.loggerbuddy.export.ExportResult
+import com.example.loggerbuddy.export.LogExportFilter
+import com.example.loggerbuddy.export.LogExporter
 
 object LoggerBuddy {
 
     private var storage: LogStorage? = null
+    private var config: LoggerBuddyConfig = LoggerBuddyConfig()
+
+    private const val DEFAULT_TAG = "App"
+    private const val EMPTY_MESSAGE_PLACEHOLDER = "(empty log message)"
 
     /**
-     * Initializes LoggerBuddy.
+     * Initializes LoggerBuddy using the default configuration.
      *
-     * Must be called once before saving or viewing logs.
-     * Recommended place: Application.onCreate() or MainActivity.onCreate().
+     * Recommended place:
+     * Application.onCreate()
      */
     fun initialize(context: Context) {
+        initialize(
+            context = context,
+            config = LoggerBuddyConfig()
+        )
+    }
+
+    /**
+     * Initializes LoggerBuddy using a custom configuration.
+     *
+     * Recommended place:
+     * Application.onCreate()
+     */
+    fun initialize(
+        context: Context,
+        config: LoggerBuddyConfig
+    ) {
+        this.config = config
         storage = LogStorage(context.applicationContext)
+
+        /*
+         * Crash catching will be connected here later.
+         *
+         * if (config.crashCatchingEnabled) {
+         *     LoggerBuddyCrashHandler.install(...)
+         * }
+         */
     }
 
     /**
      * Saves a log entry with a custom level.
      *
-     * If tag is null, LoggerBuddy tries to detect the caller class as a fallback.
-     * For reliable Activity names, prefer using log(context, message, tag, level).
+     * If tag is null, LoggerBuddy tries to detect the caller class.
      */
     fun log(
         message: String,
@@ -41,12 +71,8 @@ object LoggerBuddy {
     }
 
     /**
-     * Saves a log entry with a custom level and uses the Context class name as the tag.
-     *
-     * Recommended when logging from an Activity or other Context.
-     *
-     * Example:
-     * LoggerBuddy.log(this, "User clicked button", level = LogLevel.INFO)
+     * Saves a log entry with a custom level and uses the Context class name
+     * as the default tag.
      */
     fun log(
         context: Context,
@@ -63,9 +89,6 @@ object LoggerBuddy {
 
     /**
      * Saves an INFO log.
-     *
-     * Use INFO for normal app events, such as opening a screen,
-     * clicking a button, or completing an action.
      */
     fun info(
         message: String,
@@ -79,10 +102,7 @@ object LoggerBuddy {
     }
 
     /**
-     * Saves an INFO log and uses the Context class name as the tag.
-     *
-     * Example:
-     * LoggerBuddy.info(this, "Login button clicked")
+     * Saves an INFO log and uses the Context class name as the default tag.
      */
     fun info(
         context: Context,
@@ -98,9 +118,6 @@ object LoggerBuddy {
 
     /**
      * Saves a DEBUG log.
-     *
-     * Use DEBUG for development details, such as variable values,
-     * loading states, or flow checkpoints.
      */
     fun debug(
         message: String,
@@ -114,10 +131,7 @@ object LoggerBuddy {
     }
 
     /**
-     * Saves a DEBUG log and uses the Context class name as the tag.
-     *
-     * Example:
-     * LoggerBuddy.debug(this, "User data loading started")
+     * Saves a DEBUG log and uses the Context class name as the default tag.
      */
     fun debug(
         context: Context,
@@ -133,9 +147,6 @@ object LoggerBuddy {
 
     /**
      * Saves a WARNING log.
-     *
-     * Use WARNING for issues that are not crashes, but may still need attention,
-     * such as slow internet or missing optional data.
      */
     fun warning(
         message: String,
@@ -149,10 +160,7 @@ object LoggerBuddy {
     }
 
     /**
-     * Saves a WARNING log and uses the Context class name as the tag.
-     *
-     * Example:
-     * LoggerBuddy.warning(this, "Internet connection is slow")
+     * Saves a WARNING log and uses the Context class name as the default tag.
      */
     fun warning(
         context: Context,
@@ -168,8 +176,6 @@ object LoggerBuddy {
 
     /**
      * Saves an ERROR log.
-     *
-     * Use ERROR for failed actions, broken flows, or problems that should be checked.
      */
     fun error(
         message: String,
@@ -183,10 +189,7 @@ object LoggerBuddy {
     }
 
     /**
-     * Saves an ERROR log and uses the Context class name as the tag.
-     *
-     * Example:
-     * LoggerBuddy.error(this, "Failed to save profile")
+     * Saves an ERROR log and uses the Context class name as the default tag.
      */
     fun error(
         context: Context,
@@ -201,9 +204,7 @@ object LoggerBuddy {
     }
 
     /**
-     * Saves an ERROR log with exception details.
-     *
-     * The saved message includes the custom message and the Throwable stack trace.
+     * Saves an ERROR log with Throwable details.
      */
     fun error(
         message: String,
@@ -218,12 +219,8 @@ object LoggerBuddy {
     }
 
     /**
-     * Saves an ERROR log with exception details and uses the Context class name as the tag.
-     *
-     * Recommended when catching exceptions inside an Activity.
-     *
-     * Example:
-     * LoggerBuddy.error(this, "Failed to load data", exception)
+     * Saves an ERROR log with Throwable details and uses the Context class name
+     * as the default tag.
      */
     fun error(
         context: Context,
@@ -239,20 +236,38 @@ object LoggerBuddy {
     }
 
     /**
-     * Returns all saved logs.
+     * Returns all saved logs from newest to oldest.
      *
-     * Used by LoggerBuddy's console screen, and can also be used by the host app.
+     * This is a suspend function because it reads from the Room database.
      */
-    fun getLogs(): List<LogEntry> {
-        return runBlocking {
-            requireStorage().getLogs()
-        }
+    suspend fun getLogs(): List<LogEntry> {
+        return requireStorage().getLogs()
+    }
+
+    /**
+     * Deletes one log by its unique ID.
+     *
+     * Returns true when a log was deleted.
+     */
+    suspend fun deleteLog(logId: Long): Boolean {
+        return requireStorage().deleteLog(logId)
+    }
+
+    /**
+     * Deletes multiple logs using their unique IDs.
+     *
+     * Duplicate and invalid IDs are safely ignored.
+     *
+     * @return the number of logs deleted from local storage.
+     */
+    suspend fun deleteLogs(logIds: Collection<Long>): Int {
+        return requireStorage().deleteLogs(logIds)
     }
 
     /**
      * Deletes all saved logs.
      */
-    fun clearLogs() {
+    suspend fun clearLogs() {
         requireStorage().clearLogs()
     }
 
@@ -265,24 +280,53 @@ object LoggerBuddy {
     }
 
     /**
+     * Returns the configuration currently used by LoggerBuddy.
+     */
+    fun getConfig(): LoggerBuddyConfig {
+        return config
+    }
+
+    /**
      * Saves the final log entry.
      *
-     * All public logging functions go through this function to keep the saving
-     * logic in one place.
+     * All public logging functions go through this function.
      */
     private fun saveLog(
         message: String,
         tag: String?,
         level: LogLevel
     ) {
+        if (!shouldSave(level)) {
+            return
+        }
+
+        val finalMessage = message.ifBlank {
+            EMPTY_MESSAGE_PLACEHOLDER
+        }
+
+        val finalTag = tag
+            ?.trim()
+            ?.takeIf { it.isNotEmpty() }
+            ?: detectCallerTag()
+
         val entry = LogEntry(
             timestamp = System.currentTimeMillis(),
             level = level,
-            tag = tag ?: detectCallerTag(),
-            message = message
+            tag = finalTag,
+            message = finalMessage
         )
 
-        requireStorage().saveLog(entry)
+        requireStorage().saveLog(
+            logEntry = entry,
+            maximumStoredLogs = config.maximumStoredLogs
+        )
+    }
+
+    /**
+     * Returns true when the log level meets the configured minimum level.
+     */
+    private fun shouldSave(level: LogLevel): Boolean {
+        return level.priority >= config.minimumLevel.priority
     }
 
     /**
@@ -292,33 +336,40 @@ object LoggerBuddy {
         message: String,
         throwable: Throwable
     ): String {
+        val safeMessage = message.ifBlank {
+            "An exception was logged."
+        }
+
         return buildString {
-            appendLine(message)
+            appendLine(safeMessage)
             appendLine()
-            appendLine(throwable.stackTraceToStringSafe())
+            appendLine("Exception: ${throwable.javaClass.simpleName}")
+
+            throwable.message
+                ?.takeIf { it.isNotBlank() }
+                ?.let {
+                    appendLine("Message: $it")
+                    appendLine()
+                }
+
+            appendLine("Stack trace:")
+            append(throwable.stackTraceToStringSafe())
         }
     }
 
     /**
      * Returns the initialized storage object.
-     *
-     * Throws a clear error if LoggerBuddy.initialize(context) was not called first.
      */
     private fun requireStorage(): LogStorage {
         return storage
             ?: throw IllegalStateException(
-                "LoggerBuddy must be initialized before use. Call LoggerBuddy.initialize(context) first."
+                "LoggerBuddy must be initialized before use. " +
+                        "Call LoggerBuddy.initialize(context) first."
             )
     }
 
     /**
      * Best-effort fallback for detecting the caller class.
-     *
-     * Android stack traces can include framework classes such as RuntimeInit,
-     * so this should not be treated as the main tagging method.
-     *
-     * Recommended developer usage:
-     * LoggerBuddy.info(this, "Message")
      */
     private fun detectCallerTag(): String {
         val stackTrace = Throwable().stackTrace
@@ -340,16 +391,47 @@ object LoggerBuddy {
         return caller?.className
             ?.substringAfterLast(".")
             ?.substringBefore("$")
-            ?: "App"
+            ?.takeIf { it.isNotBlank() }
+            ?: DEFAULT_TAG
     }
 
     /**
      * Converts a Throwable stack trace into text.
      */
     private fun Throwable.stackTraceToStringSafe(): String {
-        val stringWriter = StringWriter()
-        val printWriter = PrintWriter(stringWriter)
-        printStackTrace(printWriter)
-        return stringWriter.toString()
+        return try {
+            val stringWriter = StringWriter()
+            val printWriter = PrintWriter(stringWriter)
+
+            printStackTrace(printWriter)
+            printWriter.flush()
+
+            stringWriter.toString()
+        } catch (_: Exception) {
+            "Stack trace could not be generated."
+        }
+    }
+
+
+    /**
+     * Creates a structured JSON export file from the supplied logs.
+     *
+     * The file contains:
+     * - Application metadata
+     * - Device metadata
+     * - LoggerBuddy version
+     * - Optional active-filter information
+     * - Structured log entries
+     */
+    fun createJsonExport(
+        context: Context,
+        logs: List<LogEntry>,
+        filter: LogExportFilter? = null
+    ): ExportResult {
+        return LogExporter.createJsonExport(
+            context = context.applicationContext,
+            logs = logs,
+            filter = filter
+        )
     }
 }

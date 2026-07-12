@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/logger_background_dark"
     android:orientation="vertical"
     android:padding="20dp">
 
+    <!-- Title and destructive action -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,20 +29,170 @@
             android:layout_width="wrap_content"
             android:layout_height="42dp"
             android:backgroundTint="@color/logger_button_danger"
-            android:text="Clear"
+            android:text="Clear all"
+            android:textAllCaps="false"
             android:textColor="@color/logger_text_on_color" />
+
     </LinearLayout>
 
+    <!-- Search -->
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/logger_search_background"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:drawablePadding="10dp"
+        android:hint="Search by message or tag"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingHorizontal="14dp"
+        android:textColor="@color/logger_text_primary"
+        android:textColorHint="@color/logger_text_secondary"
+        android:textSize="14sp" />
+
+    <!-- Filter title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Filter by level"
+        android:textColor="@color/logger_text_secondary"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <!-- Horizontally scrollable filters -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/infoCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:buttonTint="@color/logger_info"
+                android:text="INFO"
+                android:textColor="@color/logger_text_primary" />
+
+            <CheckBox
+                android:id="@+id/debugCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:checked="true"
+                android:buttonTint="@color/logger_debug"
+                android:text="DEBUG"
+                android:textColor="@color/logger_text_primary" />
+
+            <CheckBox
+                android:id="@+id/warningCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:checked="true"
+                android:buttonTint="@color/logger_warning"
+                android:text="WARNING"
+                android:textColor="@color/logger_text_primary" />
+
+            <CheckBox
+                android:id="@+id/errorCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:checked="true"
+                android:buttonTint="@color/logger_error"
+                android:text="ERROR"
+                android:textColor="@color/logger_text_primary" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <!-- Date filter and matching-log actions -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dateFilterButton"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:text="All dates"
+            android:backgroundTint="@color/logger_title_blue"
+            android:textColor="@color/black"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/resetDateFilterButton"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginStart="6dp"
+            android:text="Reset"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/logger_title_blue"
+            android:textAllCaps="false"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <!-- Actions for currently displayed logs -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/exportMatchingButton"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:text="Export shown"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/logger_title_blue"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/deleteMatchingButton"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/logger_button_danger"
+            android:text="Delete shown"
+            android:textAllCaps="false"
+            android:textColor="@color/logger_text_on_color" />
+
+    </LinearLayout>
+
+    <!-- Statistics -->
     <TextView
         android:id="@+id/statsTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginBottom="16dp"
-        android:text="0 logs captured"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="14dp"
+        android:text="0 matching • 0 total"
         android:textColor="@color/logger_text_secondary"
         android:textSize="14sp" />
 
+    <!-- Empty state -->
     <TextView
         android:id="@+id/emptyTextView"
         android:layout_width="match_parent"
@@ -47,15 +200,17 @@
         android:gravity="center"
         android:paddingTop="48dp"
         android:paddingBottom="48dp"
-        android:text="📄\n\nNo logs captured yet.\nAdd some logs from the demo app."
+        android:text="📄&#10;&#10;No logs captured yet."
         android:textAlignment="center"
         android:textColor="@color/logger_text_secondary"
         android:textSize="16sp"
         android:visibility="gone" />
 
+    <!-- Logs -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/logsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>

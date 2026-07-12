@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.loggerbuddy.LogLevel
 import com.example.loggerbuddy.LoggerBuddy
+import com.example.loggerbuddy.LoggerBuddyConfig
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,8 +20,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        LoggerBuddy.initialize(this)
-
+//        LoggerBuddy.initialize(this)
+        LoggerBuddy.initialize(
+            context = this,
+            config = LoggerBuddyConfig(
+                minimumLevel = LogLevel.DEBUG,
+                maximumStoredLogs = 5_000,
+                crashCatchingEnabled = true
+            )
+        )
         messageEditText = findViewById(R.id.messageEditText)
         tagEditText = findViewById(R.id.tagEditText)
         levelRadioGroup = findViewById(R.id.levelRadioGroup)
