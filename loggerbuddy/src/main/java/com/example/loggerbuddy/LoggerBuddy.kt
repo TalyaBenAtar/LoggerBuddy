@@ -2,10 +2,12 @@ package com.example.loggerbuddy
 
 import android.content.Context
 import android.content.Intent
+import android.os.Process
 import com.example.loggerbuddy.data.LogStorage
 import com.example.loggerbuddy.ui.LogViewerActivity
 import java.io.PrintWriter
 import java.io.StringWriter
+import java.util.concurrent.atomic.AtomicBoolean
 import com.example.loggerbuddy.export.ExportResult
 import com.example.loggerbuddy.export.LogExportFilter
 import com.example.loggerbuddy.export.LogExporter
@@ -14,8 +16,11 @@ object LoggerBuddy {
 
     private var storage: LogStorage? = null
     private var config: LoggerBuddyConfig = LoggerBuddyConfig()
+    private var previousCrashHandler: Thread.UncaughtExceptionHandler? = null
+    private val isHandlingCrash = AtomicBoolean(false)
 
     private const val DEFAULT_TAG = "App"
+    private const val CRASH_TAG = "UNCAUGHT_CRASH"
     private const val EMPTY_MESSAGE_PLACEHOLDER = "(empty log message)"
 
     /**
@@ -44,13 +49,9 @@ object LoggerBuddy {
         this.config = config
         storage = LogStorage(context.applicationContext)
 
-        /*
-         * Crash catching will be connected here later.
-         *
-         * if (config.crashCatchingEnabled) {
-         *     LoggerBuddyCrashHandler.install(...)
-         * }
-         */
+        if (config.crashCatchingEnabled) {
+            installCrashHandler()
+        }
     }
 
     /**
@@ -355,6 +356,89 @@ object LoggerBuddy {
             appendLine("Stack trace:")
             append(throwable.stackTraceToStringSafe())
         }
+    }
+
+    /**
+     * Installs a process-wide uncaught-exception handler.
+     *
+     * The crash is written synchronously so the database operation finishes
+     * before Android terminates the application.
+     */
+    private fun installCrashHandler() {
+        val currentHandler = Thread.getDefaultUncaughtExceptionHandler()
+
+        if (currentHandler === crashHandler) {
+            return
+        }
+
+        previousCrashHandler = currentHandler
+        Thread.setDefaultUncaughtExceptionHandler(crashHandler)
+    }
+
+    /**
+     * Handles uncaught exceptions, stores them as ERROR logs, and then
+     * delegates to Android's original crash handler.
+     */
+    private val crashHandler = object : Thread.UncaughtExceptionHandler {
+        override fun uncaughtException(
+            thread: Thread,
+            throwable: Throwable
+        ) {
+            if (isHandlingCrash.compareAndSet(false, true)) {
+                try {
+                    saveCrashSynchronously(
+                        thread = thread,
+                        throwable = throwable
+                    )
+                } catch (_: Throwable) {
+                    // Crash reporting must never prevent Android's normal termination.
+                }
+            }
+
+            val originalHandler = previousCrashHandler
+
+            if (originalHandler != null && originalHandler !== this) {
+                originalHandler.uncaughtException(thread, throwable)
+            } else {
+                Process.killProcess(Process.myPid())
+                kotlin.system.exitProcess(10)
+            }
+        }
+    }
+
+    /**
+     * Builds and stores the final uncaught-crash entry.
+     */
+    private fun saveCrashSynchronously(
+        thread: Thread,
+        throwable: Throwable
+    ) {
+        if (!shouldSave(LogLevel.ERROR)) {
+            return
+        }
+
+        val crashMessage = buildString {
+            appendLine("Unhandled crash in thread: ${thread.name}")
+            appendLine()
+            append(
+                buildErrorMessage(
+                    message = "The application terminated because of an uncaught exception.",
+                    throwable = throwable
+                )
+            )
+        }
+
+        val entry = LogEntry(
+            timestamp = System.currentTimeMillis(),
+            level = LogLevel.ERROR,
+            tag = CRASH_TAG,
+            message = crashMessage
+        )
+
+        requireStorage().saveLogSynchronously(
+            logEntry = entry,
+            maximumStoredLogs = config.maximumStoredLogs
+        )
     }
 
     /**

@@ -71,6 +71,15 @@
             android:text="Simulate Error"
             android:textColor="@color/demo_text_primary" />
 
+        <Button
+            android:id="@+id/crashButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/demo_button_blue"
+            android:textColor="@color/demo_text_primary"
+            android:text="Crash App (Test)" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

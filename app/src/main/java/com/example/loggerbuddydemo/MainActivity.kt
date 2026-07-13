@@ -60,6 +60,12 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.openConsoleButton).setOnClickListener {
             LoggerBuddy.showConsole(this)
         }
+
+        findViewById<Button>(R.id.crashButton).setOnClickListener {
+            throw IllegalStateException(
+                "Intentional LoggerBuddy crash test"
+            )
+        }
     }
 
     private fun addCustomLog() {

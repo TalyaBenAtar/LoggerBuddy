@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class LogStorage(context: Context) {
@@ -28,6 +29,22 @@ class LogStorage(context: Context) {
         maximumStoredLogs: Int
     ) {
         storageScope.launch {
+            logDao.insertLog(logEntry)
+            trimLogsIfNeeded(maximumStoredLogs)
+        }
+    }
+
+    /**
+     * Saves a log entry and waits until the database write is complete.
+     *
+     * This is reserved for fatal-crash handling, where the process may end
+     * immediately after this function returns.
+     */
+    fun saveLogSynchronously(
+        logEntry: LogEntry,
+        maximumStoredLogs: Int
+    ) {
+        runBlocking(Dispatchers.IO) {
             logDao.insertLog(logEntry)
             trimLogsIfNeeded(maximumStoredLogs)
         }
