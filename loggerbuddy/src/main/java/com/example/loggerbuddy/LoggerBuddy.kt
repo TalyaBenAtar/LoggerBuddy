@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 import com.example.loggerbuddy.export.ExportResult
 import com.example.loggerbuddy.export.LogExportFilter
 import com.example.loggerbuddy.export.LogExporter
+import com.example.loggerbuddy.remote.RemoteLogUploader
 
 object LoggerBuddy {
 
@@ -18,6 +19,7 @@ object LoggerBuddy {
     private var config: LoggerBuddyConfig = LoggerBuddyConfig()
     private var previousCrashHandler: Thread.UncaughtExceptionHandler? = null
     private val isHandlingCrash = AtomicBoolean(false)
+    private var remoteUploader: RemoteLogUploader? = null
 
     private const val DEFAULT_TAG = "App"
     private const val CRASH_TAG = "UNCAUGHT_CRASH"
@@ -48,6 +50,16 @@ object LoggerBuddy {
     ) {
         this.config = config
         storage = LogStorage(context.applicationContext)
+
+        remoteUploader = if (config.remoteLoggingEnabled) {
+            RemoteLogUploader(
+                context = context.applicationContext,
+                endpoint = requireNotNull(config.remoteEndpoint),
+                apiKey = requireNotNull(config.remoteApiKey)
+            )
+        } else {
+            null
+        }
 
         if (config.crashCatchingEnabled) {
             installCrashHandler()
@@ -321,6 +333,8 @@ object LoggerBuddy {
             logEntry = entry,
             maximumStoredLogs = config.maximumStoredLogs
         )
+
+        remoteUploader?.upload(entry)
     }
 
     /**
@@ -438,6 +452,11 @@ object LoggerBuddy {
         requireStorage().saveLogSynchronously(
             logEntry = entry,
             maximumStoredLogs = config.maximumStoredLogs
+        )
+
+        remoteUploader?.uploadCrashSynchronously(
+            entry = entry,
+            stackTrace = throwable.stackTraceToStringSafe()
         )
     }
 

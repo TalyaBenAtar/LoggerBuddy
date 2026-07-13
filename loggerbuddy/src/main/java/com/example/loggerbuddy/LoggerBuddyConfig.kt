@@ -6,29 +6,44 @@ package com.example.loggerbuddy
  * @property minimumLevel
  * The lowest log level that LoggerBuddy will save.
  *
- * For example, when set to [LogLevel.WARNING], DEBUG and INFO logs
- * will be ignored.
- *
  * @property maximumStoredLogs
  * The maximum number of logs LoggerBuddy keeps in local storage.
- *
- * When this limit is exceeded, LoggerBuddy automatically removes
- * the oldest logs.
  *
  * @property crashCatchingEnabled
  * Determines whether LoggerBuddy automatically captures uncaught crashes.
  *
- * Crash catching begins only after [LoggerBuddy.initialize] is called.
+ * @property remoteLoggingEnabled
+ * Determines whether logs are also uploaded to a remote LoggerBuddy dashboard.
+ *
+ * @property remoteEndpoint
+ * Full Retool workflow webhook endpoint.
+ *
+ * @property remoteApiKey
+ * API key used to authenticate requests to the Retool webhook.
  */
 data class LoggerBuddyConfig(
     val minimumLevel: LogLevel = LogLevel.DEBUG,
     val maximumStoredLogs: Int = DEFAULT_MAXIMUM_STORED_LOGS,
-    val crashCatchingEnabled: Boolean = true
+    val crashCatchingEnabled: Boolean = true,
+
+    val remoteLoggingEnabled: Boolean = false,
+    val remoteEndpoint: String? = null,
+    val remoteApiKey: String? = null
 ) {
 
     init {
         require(maximumStoredLogs > 0) {
             "maximumStoredLogs must be greater than 0."
+        }
+
+        if (remoteLoggingEnabled) {
+            require(!remoteEndpoint.isNullOrBlank()) {
+                "remoteEndpoint must be provided when remote logging is enabled."
+            }
+
+            require(!remoteApiKey.isNullOrBlank()) {
+                "remoteApiKey must be provided when remote logging is enabled."
+            }
         }
     }
 

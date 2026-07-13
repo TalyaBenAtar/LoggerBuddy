@@ -10,6 +10,7 @@ import com.example.loggerbuddy.LogLevel
 import com.example.loggerbuddy.LoggerBuddy
 import com.example.loggerbuddy.LoggerBuddyConfig
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var messageEditText: EditText
@@ -21,14 +22,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 //        LoggerBuddy.initialize(this)
+//        LoggerBuddy.initialize(
+//            context = this,
+//            config = LoggerBuddyConfig(
+//                minimumLevel = LogLevel.DEBUG,
+//                maximumStoredLogs = 5_000,
+//                crashCatchingEnabled = true
+//            )
+//        )
         LoggerBuddy.initialize(
             context = this,
             config = LoggerBuddyConfig(
-                minimumLevel = LogLevel.DEBUG,
-                maximumStoredLogs = 5_000,
-                crashCatchingEnabled = true
+                crashCatchingEnabled = true,
+                remoteLoggingEnabled = true,
+                remoteEndpoint = BuildConfig.RETOOL_ENDPOINT,
+                remoteApiKey = BuildConfig.RETOOL_API_KEY
             )
         )
+
         messageEditText = findViewById(R.id.messageEditText)
         tagEditText = findViewById(R.id.tagEditText)
         levelRadioGroup = findViewById(R.id.levelRadioGroup)
