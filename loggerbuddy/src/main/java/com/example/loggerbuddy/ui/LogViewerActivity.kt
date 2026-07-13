@@ -34,6 +34,7 @@ import com.example.loggerbuddy.export.LogExportFilter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
+import androidx.activity.result.contract.ActivityResultContracts
 
 class LogViewerActivity : AppCompatActivity() {
 
@@ -54,6 +55,40 @@ class LogViewerActivity : AppCompatActivity() {
     private var allLogs: List<LogEntry> = emptyList()
     private var currentFilter = LogFilter()
     private var filteredLogs: List<LogEntry> = emptyList()
+    private var pendingExportFile: File? = null
+
+    private val saveJsonLauncher =
+        registerForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
+            val sourceFile = pendingExportFile ?: return@registerForActivityResult
+
+            if (uri == null) {
+                pendingExportFile = null
+                return@registerForActivityResult
+            }
+
+            try {
+                contentResolver.openOutputStream(uri)?.use { output ->
+                    sourceFile.inputStream().use { input ->
+                        input.copyTo(output)
+                    }
+                }
+
+                Toast.makeText(
+                    this,
+                    "Export saved successfully!",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            } catch (e: Exception) {
+                Toast.makeText(
+                    this,
+                    "Failed to save export.",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+            pendingExportFile = null
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -745,7 +780,8 @@ class LogViewerActivity : AppCompatActivity() {
 
             when (result) {
                 is ExportResult.Success -> {
-                    shareExportFile(result.file)
+//                    shareExportFile(result.file)
+                    showExportOptions(result.file)
                 }
 
                 is ExportResult.Failure -> {
@@ -757,6 +793,24 @@ class LogViewerActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun saveExportFile(file: File) {
+        pendingExportFile = file
+
+        saveJsonLauncher.launch(file.name)
+    }
+
+    private fun showExportOptions(file: File) {
+        AlertDialog.Builder(this)
+            .setTitle("Export JSON")
+            .setItems(arrayOf("Share", "Save to device")) { _, which ->
+                when (which) {
+                    0 -> shareExportFile(file)
+                    1 -> saveExportFile(file)
+                }
+            }
+            .show()
     }
 
     /**
