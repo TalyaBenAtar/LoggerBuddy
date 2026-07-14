@@ -164,44 +164,6 @@ Only the exported JSON format is required.
 
 ---
 
-# 🛠 Using the Example Dashboard
-
-## Step 1
-
-Export logs from LoggerBuddy.
-
-Choose either:
-
-- Export all logs
-
-or
-
-- Export filtered logs
-
----
-
-## Step 2
-
-Open your dashboard platform.
-
-The example uses Retool.
-
----
-
-## Step 3
-
-Import the exported JSON.
-
-Map the fields.
-
----
-
-## Step 4
-
-Build your tables, filters and charts.
-
----
-
 # 🤖 AI Prompt
 
 The repository includes an AI prompt that can recreate or customize the example dashboard.
@@ -227,6 +189,58 @@ Import it directly into Retool.
 loggerbuddy_sample-export.json
 
 ```
+
+---
+
+# How to Import My Dashboard Template Into Your Retool App?
+
+Follow either of these options to upload the `LoggerBuddy-Dashboard.zip` file into your own Retool workspace.
+
+## Option 1: Using the New Retool App Builder (Easiest)
+If you just clicked **Create** > **App** and are looking at the AI assistant panel on the left:
+1. Locate the **file attachment icon** or drag-and-drop zone in the AI panel.
+2. Drag and drop the downloaded `LoggerBuddy-Dashboard.zip` template file straight into the chat/upload window.
+3. The Retool assistant will parse the configuration and instantly populate the dashboard for you.
+
+---
+
+## Option 2: Using the Classic Uploader
+If you prefer to bypass the AI assistant and create a standalone clone of the dashboard:
+1. Go to your Retool home dashboard.
+2. Click the blue **Create** button in the top right.
+3. Select **Classic app** from the dropdown menu.
+4. In the configuration popup that opens, look for the option labeled **From JSON / ZIP** (usually at the bottom or top corner of the window).
+5. Upload the `LoggerBuddy-Dashboard.zip` file, give your new app a name, and click **Create app**.
+
+---
+
+## ⚠️ **Note on Data Connectivity:** 
+This template contains only the UI layout, front-end logic, and query structures. It does **not** connect to the original database or leak any private data. 
+After importing, you will need to open the app editor, click on the queries, and re-link them to your own Retool data resources. You can use the `loggerbuddy-sample_export.jason` to create your owndata resource.
+
+---
+
+# 🔌 Reconnecting Your Data Resources
+
+Because this template is shared as a privacy-safe template, it contains the UI structure and query text, but **cannot access the original databases**. To make the dashboard functional in your environment, follow these steps:
+
+### Step 1: Open the Query Library / Bottom Panel
+1. With your newly imported app open in the Retool Editor, look at the bottom half of the screen.
+2. If the query panel is hidden, press `Ctrl + ~` (or `Cmd + ~` on Mac), or click the **bottom bar icon** in the lower panel to open it.
+
+### Step 2: Update the Resource Selection
+1. Look at the left sidebar of the bottom panel—this lists all the queries running behind the dashboard (e.g., `getSalesData`, `fetchUsers`).
+2. Click on the first query in the list.
+3. In the query configuration area, look for the **Resource** dropdown field at the very top.
+4. It will likely show a red error or say *"Resource not found"*. Click the dropdown and select your own database or API connection (e.g., your PostgreSQL, MySQL, or REST API instance).
+
+## Step 3: Match the Data Schema (If Needed)
+* **Exact Match:** If your database uses the exact same table and column names as the original template, the query will work immediately.
+* **Custom Match:** If your database has different column names, adjust the SQL or API parameters inside the query box to match your schema.
+
+## Step 4: Save and Repeat
+1. Click **Save** or **Save and Run** in the top right of the query panel to apply the change.
+2. Repeat this process for any other queries listed in the bottom panel until all components populate with your live data.
 
 ---
 
