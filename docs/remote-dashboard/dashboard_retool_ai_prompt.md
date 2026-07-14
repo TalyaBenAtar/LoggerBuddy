@@ -1,6 +1,6 @@
 # 🤖 LoggerBuddy Dashboard AI Prompt
 
-This prompt can be used with ChatGPT or another Large Language Model (LLM) to recreate, customize, or extend a dashboard for LoggerBuddy.
+This prompt can be used when creating a new dashboard in retool  or another Large Language Model (LLM) to recreate, customize, or extend the example dashboard for LoggerBuddy.
 
 The dashboard included in this repository is only an example implementation.
 
