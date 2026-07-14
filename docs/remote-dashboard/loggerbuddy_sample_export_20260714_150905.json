@@ -1,0 +1,573 @@
+{
+  "exportMetadata": {
+    "generatedAt": 1784030945112,
+    "generatedAtFormatted": "14 Jul 2026 15:09:05 +0300",
+    "applicationName": "LoggerBuddyDemo",
+    "packageName": "com.example.loggerbuddydemo",
+    "applicationVersionName": "1.0",
+    "applicationVersionCode": 1,
+    "androidVersion": "13",
+    "androidSdk": 33,
+    "deviceManufacturer": "samsung",
+    "deviceModel": "SM-A528B",
+    "loggerBuddyVersion": "2.0.0",
+    "exportedLogCount": 68
+  },
+  "activeFilters": {
+    "levels": [
+      "DEBUG",
+      "INFO",
+      "WARNING",
+      "ERROR"
+    ],
+    "searchQuery": "",
+    "fromTimestamp": null,
+    "toTimestamp": null
+  },
+  "logs": [
+    {
+      "id": 188,
+      "timestamp": 1784028649380,
+      "formattedDate": "14 Jul 2026 14:30:49 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 187,
+      "timestamp": 1784028649165,
+      "formattedDate": "14 Jul 2026 14:30:49 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 186,
+      "timestamp": 1784028648903,
+      "formattedDate": "14 Jul 2026 14:30:48 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 185,
+      "timestamp": 1784028648648,
+      "formattedDate": "14 Jul 2026 14:30:48 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 184,
+      "timestamp": 1784028630711,
+      "formattedDate": "14 Jul 2026 14:30:30 +0300",
+      "level": "ERROR",
+      "tag": "UNCAUGHT_CRASH",
+      "message": "Unhandled crash in thread: main\n\nThe application terminated because of an uncaught exception.\n\nException: IllegalStateException\nMessage: Intentional LoggerBuddy crash test\n\nStack trace:\njava.lang.IllegalStateException: Intentional LoggerBuddy crash test\n\tat com.example.loggerbuddydemo.MainActivity.onCreate$lambda$6(MainActivity.kt:76)\n\tat com.example.loggerbuddydemo.MainActivity.$r8$lambda$1xBOZnv6pzaS8Dk_QEuoxQf43FQ(Unknown Source:0)\n\tat com.example.loggerbuddydemo.MainActivity$$ExternalSyntheticLambda6.onClick(D8$$SyntheticClass:0)\n\tat android.view.View.performClick(View.java:7881)\n\tat android.widget.TextView.performClick(TextView.java:16201)\n\tat com.google.android.material.button.MaterialButton.performClick(MaterialButton.java:1786)\n\tat android.view.View.performClickInternal(View.java:7858)\n\tat android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)\n\tat android.view.View$PerformClick.run(View.java:30863)\n\tat android.os.Handler.handleCallback(Handler.java:942)\n\tat android.os.Handler.dispatchMessage(Handler.java:99)\n\tat android.os.Looper.loopOnce(Looper.java:226)\n\tat android.os.Looper.loop(Looper.java:313)\n\tat android.app.ActivityThread.main(ActivityThread.java:8741)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:571)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1067)\n"
+    },
+    {
+      "id": 183,
+      "timestamp": 1784026946750,
+      "formattedDate": "14 Jul 2026 14:02:26 +0300",
+      "level": "INFO",
+      "tag": "CustomActivity",
+      "message": "Custom Log Message"
+    },
+    {
+      "id": 182,
+      "timestamp": 1784020897671,
+      "formattedDate": "14 Jul 2026 12:21:37 +0300",
+      "level": "ERROR",
+      "tag": "UNCAUGHT_CRASH",
+      "message": "Unhandled crash in thread: main\n\nThe application terminated because of an uncaught exception.\n\nException: IllegalStateException\nMessage: Intentional LoggerBuddy crash test\n\nStack trace:\njava.lang.IllegalStateException: Intentional LoggerBuddy crash test\n\tat com.example.loggerbuddydemo.MainActivity.onCreate$lambda$6(MainActivity.kt:76)\n\tat com.example.loggerbuddydemo.MainActivity.$r8$lambda$1xBOZnv6pzaS8Dk_QEuoxQf43FQ(Unknown Source:0)\n\tat com.example.loggerbuddydemo.MainActivity$$ExternalSyntheticLambda6.onClick(D8$$SyntheticClass:0)\n\tat android.view.View.performClick(View.java:7881)\n\tat android.widget.TextView.performClick(TextView.java:16201)\n\tat com.google.android.material.button.MaterialButton.performClick(MaterialButton.java:1786)\n\tat android.view.View.performClickInternal(View.java:7858)\n\tat android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)\n\tat android.view.View$PerformClick.run(View.java:30863)\n\tat android.os.Handler.handleCallback(Handler.java:942)\n\tat android.os.Handler.dispatchMessage(Handler.java:99)\n\tat android.os.Looper.loopOnce(Looper.java:226)\n\tat android.os.Looper.loop(Looper.java:313)\n\tat android.app.ActivityThread.main(ActivityThread.java:8741)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:571)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1067)\n"
+    },
+    {
+      "id": 181,
+      "timestamp": 1784020896576,
+      "formattedDate": "14 Jul 2026 12:21:36 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 180,
+      "timestamp": 1784020896295,
+      "formattedDate": "14 Jul 2026 12:21:36 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 179,
+      "timestamp": 1784020895982,
+      "formattedDate": "14 Jul 2026 12:21:35 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 178,
+      "timestamp": 1784020895715,
+      "formattedDate": "14 Jul 2026 12:21:35 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 177,
+      "timestamp": 1784020588532,
+      "formattedDate": "14 Jul 2026 12:16:28 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 176,
+      "timestamp": 1784020588369,
+      "formattedDate": "14 Jul 2026 12:16:28 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 175,
+      "timestamp": 1784020588084,
+      "formattedDate": "14 Jul 2026 12:16:28 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 174,
+      "timestamp": 1784020587807,
+      "formattedDate": "14 Jul 2026 12:16:27 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 173,
+      "timestamp": 1783973183806,
+      "formattedDate": "13 Jul 2026 23:06:23 +0300",
+      "level": "ERROR",
+      "tag": "UNCAUGHT_CRASH",
+      "message": "Unhandled crash in thread: main\n\nThe application terminated because of an uncaught exception.\n\nException: IllegalStateException\nMessage: Intentional LoggerBuddy crash test\n\nStack trace:\njava.lang.IllegalStateException: Intentional LoggerBuddy crash test\n\tat com.example.loggerbuddydemo.MainActivity.onCreate$lambda$6(MainActivity.kt:76)\n\tat com.example.loggerbuddydemo.MainActivity.$r8$lambda$1xBOZnv6pzaS8Dk_QEuoxQf43FQ(Unknown Source:0)\n\tat com.example.loggerbuddydemo.MainActivity$$ExternalSyntheticLambda6.onClick(D8$$SyntheticClass:0)\n\tat android.view.View.performClick(View.java:7881)\n\tat android.widget.TextView.performClick(TextView.java:16201)\n\tat com.google.android.material.button.MaterialButton.performClick(MaterialButton.java:1786)\n\tat android.view.View.performClickInternal(View.java:7858)\n\tat android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)\n\tat android.view.View$PerformClick.run(View.java:30863)\n\tat android.os.Handler.handleCallback(Handler.java:942)\n\tat android.os.Handler.dispatchMessage(Handler.java:99)\n\tat android.os.Looper.loopOnce(Looper.java:226)\n\tat android.os.Looper.loop(Looper.java:313)\n\tat android.app.ActivityThread.main(ActivityThread.java:8741)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:571)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1067)\n"
+    },
+    {
+      "id": 172,
+      "timestamp": 1783973183192,
+      "formattedDate": "13 Jul 2026 23:06:23 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 171,
+      "timestamp": 1783973183009,
+      "formattedDate": "13 Jul 2026 23:06:23 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 169,
+      "timestamp": 1783973182643,
+      "formattedDate": "13 Jul 2026 23:06:22 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 168,
+      "timestamp": 1783973181482,
+      "formattedDate": "13 Jul 2026 23:06:21 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 167,
+      "timestamp": 1783973181267,
+      "formattedDate": "13 Jul 2026 23:06:21 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 166,
+      "timestamp": 1783973180422,
+      "formattedDate": "13 Jul 2026 23:06:20 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 165,
+      "timestamp": 1783973179938,
+      "formattedDate": "13 Jul 2026 23:06:19 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 164,
+      "timestamp": 1783973179640,
+      "formattedDate": "13 Jul 2026 23:06:19 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 163,
+      "timestamp": 1783972968315,
+      "formattedDate": "13 Jul 2026 23:02:48 +0300",
+      "level": "ERROR",
+      "tag": "UNCAUGHT_CRASH",
+      "message": "Unhandled crash in thread: main\n\nThe application terminated because of an uncaught exception.\n\nException: IllegalStateException\nMessage: Intentional LoggerBuddy crash test\n\nStack trace:\njava.lang.IllegalStateException: Intentional LoggerBuddy crash test\n\tat com.example.loggerbuddydemo.MainActivity.onCreate$lambda$6(MainActivity.kt:76)\n\tat com.example.loggerbuddydemo.MainActivity.$r8$lambda$1xBOZnv6pzaS8Dk_QEuoxQf43FQ(Unknown Source:0)\n\tat com.example.loggerbuddydemo.MainActivity$$ExternalSyntheticLambda6.onClick(D8$$SyntheticClass:0)\n\tat android.view.View.performClick(View.java:7881)\n\tat android.widget.TextView.performClick(TextView.java:16201)\n\tat com.google.android.material.button.MaterialButton.performClick(MaterialButton.java:1786)\n\tat android.view.View.performClickInternal(View.java:7858)\n\tat android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)\n\tat android.view.View$PerformClick.run(View.java:30863)\n\tat android.os.Handler.handleCallback(Handler.java:942)\n\tat android.os.Handler.dispatchMessage(Handler.java:99)\n\tat android.os.Looper.loopOnce(Looper.java:226)\n\tat android.os.Looper.loop(Looper.java:313)\n\tat android.app.ActivityThread.main(ActivityThread.java:8741)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:571)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1067)\n"
+    },
+    {
+      "id": 162,
+      "timestamp": 1783972967841,
+      "formattedDate": "13 Jul 2026 23:02:47 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 161,
+      "timestamp": 1783972967643,
+      "formattedDate": "13 Jul 2026 23:02:47 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 160,
+      "timestamp": 1783972967359,
+      "formattedDate": "13 Jul 2026 23:02:47 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 159,
+      "timestamp": 1783972967144,
+      "formattedDate": "13 Jul 2026 23:02:47 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 158,
+      "timestamp": 1783972966916,
+      "formattedDate": "13 Jul 2026 23:02:46 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 157,
+      "timestamp": 1783972966662,
+      "formattedDate": "13 Jul 2026 23:02:46 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 156,
+      "timestamp": 1783972966367,
+      "formattedDate": "13 Jul 2026 23:02:46 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 155,
+      "timestamp": 1783970617717,
+      "formattedDate": "13 Jul 2026 22:23:37 +0300",
+      "level": "ERROR",
+      "tag": "UNCAUGHT_CRASH",
+      "message": "Unhandled crash in thread: main\n\nThe application terminated because of an uncaught exception.\n\nException: IllegalStateException\nMessage: Intentional LoggerBuddy crash test\n\nStack trace:\njava.lang.IllegalStateException: Intentional LoggerBuddy crash test\n\tat com.example.loggerbuddydemo.MainActivity.onCreate$lambda$6(MainActivity.kt:76)\n\tat com.example.loggerbuddydemo.MainActivity.$r8$lambda$1xBOZnv6pzaS8Dk_QEuoxQf43FQ(Unknown Source:0)\n\tat com.example.loggerbuddydemo.MainActivity$$ExternalSyntheticLambda6.onClick(D8$$SyntheticClass:0)\n\tat android.view.View.performClick(View.java:7881)\n\tat android.widget.TextView.performClick(TextView.java:16201)\n\tat com.google.android.material.button.MaterialButton.performClick(MaterialButton.java:1786)\n\tat android.view.View.performClickInternal(View.java:7858)\n\tat android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)\n\tat android.view.View$PerformClick.run(View.java:30863)\n\tat android.os.Handler.handleCallback(Handler.java:942)\n\tat android.os.Handler.dispatchMessage(Handler.java:99)\n\tat android.os.Looper.loopOnce(Looper.java:226)\n\tat android.os.Looper.loop(Looper.java:313)\n\tat android.app.ActivityThread.main(ActivityThread.java:8741)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:571)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1067)\n"
+    },
+    {
+      "id": 154,
+      "timestamp": 1783970403807,
+      "formattedDate": "13 Jul 2026 22:20:03 +0300",
+      "level": "ERROR",
+      "tag": "UNCAUGHT_CRASH",
+      "message": "Unhandled crash in thread: main\n\nThe application terminated because of an uncaught exception.\n\nException: IllegalStateException\nMessage: Intentional LoggerBuddy crash test\n\nStack trace:\njava.lang.IllegalStateException: Intentional LoggerBuddy crash test\n\tat com.example.loggerbuddydemo.MainActivity.onCreate$lambda$6(MainActivity.kt:76)\n\tat com.example.loggerbuddydemo.MainActivity.$r8$lambda$1xBOZnv6pzaS8Dk_QEuoxQf43FQ(Unknown Source:0)\n\tat com.example.loggerbuddydemo.MainActivity$$ExternalSyntheticLambda6.onClick(D8$$SyntheticClass:0)\n\tat android.view.View.performClick(View.java:7881)\n\tat android.widget.TextView.performClick(TextView.java:16201)\n\tat com.google.android.material.button.MaterialButton.performClick(MaterialButton.java:1786)\n\tat android.view.View.performClickInternal(View.java:7858)\n\tat android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)\n\tat android.view.View$PerformClick.run(View.java:30863)\n\tat android.os.Handler.handleCallback(Handler.java:942)\n\tat android.os.Handler.dispatchMessage(Handler.java:99)\n\tat android.os.Looper.loopOnce(Looper.java:226)\n\tat android.os.Looper.loop(Looper.java:313)\n\tat android.app.ActivityThread.main(ActivityThread.java:8741)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:571)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1067)\n"
+    },
+    {
+      "id": 153,
+      "timestamp": 1783970330161,
+      "formattedDate": "13 Jul 2026 22:18:50 +0300",
+      "level": "ERROR",
+      "tag": "UNCAUGHT_CRASH",
+      "message": "Unhandled crash in thread: main\n\nThe application terminated because of an uncaught exception.\n\nException: IllegalStateException\nMessage: Intentional LoggerBuddy crash test\n\nStack trace:\njava.lang.IllegalStateException: Intentional LoggerBuddy crash test\n\tat com.example.loggerbuddydemo.MainActivity.onCreate$lambda$6(MainActivity.kt:76)\n\tat com.example.loggerbuddydemo.MainActivity.$r8$lambda$1xBOZnv6pzaS8Dk_QEuoxQf43FQ(Unknown Source:0)\n\tat com.example.loggerbuddydemo.MainActivity$$ExternalSyntheticLambda6.onClick(D8$$SyntheticClass:0)\n\tat android.view.View.performClick(View.java:7881)\n\tat android.widget.TextView.performClick(TextView.java:16201)\n\tat com.google.android.material.button.MaterialButton.performClick(MaterialButton.java:1786)\n\tat android.view.View.performClickInternal(View.java:7858)\n\tat android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)\n\tat android.view.View$PerformClick.run(View.java:30863)\n\tat android.os.Handler.handleCallback(Handler.java:942)\n\tat android.os.Handler.dispatchMessage(Handler.java:99)\n\tat android.os.Looper.loopOnce(Looper.java:226)\n\tat android.os.Looper.loop(Looper.java:313)\n\tat android.app.ActivityThread.main(ActivityThread.java:8741)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:571)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1067)\n"
+    },
+    {
+      "id": 152,
+      "timestamp": 1783970317044,
+      "formattedDate": "13 Jul 2026 22:18:37 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 151,
+      "timestamp": 1783970316580,
+      "formattedDate": "13 Jul 2026 22:18:36 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 150,
+      "timestamp": 1783970316150,
+      "formattedDate": "13 Jul 2026 22:18:36 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 149,
+      "timestamp": 1783970309610,
+      "formattedDate": "13 Jul 2026 22:18:29 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 148,
+      "timestamp": 1783970207655,
+      "formattedDate": "13 Jul 2026 22:16:47 +0300",
+      "level": "INFO",
+      "tag": "Dashboard Test",
+      "message": "Testing Dashboard"
+    },
+    {
+      "id": 147,
+      "timestamp": 1783969907224,
+      "formattedDate": "13 Jul 2026 22:11:47 +0300",
+      "level": "INFO",
+      "tag": "Dashboard Test",
+      "message": "First Real Cloud Log"
+    },
+    {
+      "id": 146,
+      "timestamp": 1783969786347,
+      "formattedDate": "13 Jul 2026 22:09:46 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 145,
+      "timestamp": 1783969770660,
+      "formattedDate": "13 Jul 2026 22:09:30 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 144,
+      "timestamp": 1783940488944,
+      "formattedDate": "13 Jul 2026 14:01:28 +0300",
+      "level": "ERROR",
+      "tag": "UNCAUGHT_CRASH",
+      "message": "Unhandled crash in thread: main\n\nThe application terminated because of an uncaught exception.\n\nException: IllegalStateException\nMessage: Intentional LoggerBuddy crash test\n\nStack trace:\njava.lang.IllegalStateException: Intentional LoggerBuddy crash test\n\tat com.example.loggerbuddydemo.MainActivity.onCreate$lambda$6(MainActivity.kt:65)\n\tat com.example.loggerbuddydemo.MainActivity.$r8$lambda$1xBOZnv6pzaS8Dk_QEuoxQf43FQ(Unknown Source:0)\n\tat com.example.loggerbuddydemo.MainActivity$$ExternalSyntheticLambda6.onClick(D8$$SyntheticClass:0)\n\tat android.view.View.performClick(View.java:7881)\n\tat android.widget.TextView.performClick(TextView.java:16201)\n\tat com.google.android.material.button.MaterialButton.performClick(MaterialButton.java:1786)\n\tat android.view.View.performClickInternal(View.java:7858)\n\tat android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)\n\tat android.view.View$PerformClick.run(View.java:30863)\n\tat android.os.Handler.handleCallback(Handler.java:942)\n\tat android.os.Handler.dispatchMessage(Handler.java:99)\n\tat android.os.Looper.loopOnce(Looper.java:226)\n\tat android.os.Looper.loop(Looper.java:313)\n\tat android.app.ActivityThread.main(ActivityThread.java:8741)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:571)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1067)\n"
+    },
+    {
+      "id": 143,
+      "timestamp": 1783940399328,
+      "formattedDate": "13 Jul 2026 13:59:59 +0300",
+      "level": "ERROR",
+      "tag": "UNCAUGHT_CRASH",
+      "message": "Unhandled crash in thread: main\n\nThe application terminated because of an uncaught exception.\n\nException: IllegalStateException\nMessage: Intentional LoggerBuddy crash test\n\nStack trace:\njava.lang.IllegalStateException: Intentional LoggerBuddy crash test\n\tat com.example.loggerbuddydemo.MainActivity.onCreate$lambda$6(MainActivity.kt:65)\n\tat com.example.loggerbuddydemo.MainActivity.$r8$lambda$1xBOZnv6pzaS8Dk_QEuoxQf43FQ(Unknown Source:0)\n\tat com.example.loggerbuddydemo.MainActivity$$ExternalSyntheticLambda6.onClick(D8$$SyntheticClass:0)\n\tat android.view.View.performClick(View.java:7881)\n\tat android.widget.TextView.performClick(TextView.java:16201)\n\tat com.google.android.material.button.MaterialButton.performClick(MaterialButton.java:1786)\n\tat android.view.View.performClickInternal(View.java:7858)\n\tat android.view.View.-$$Nest$mperformClickInternal(Unknown Source:0)\n\tat android.view.View$PerformClick.run(View.java:30863)\n\tat android.os.Handler.handleCallback(Handler.java:942)\n\tat android.os.Handler.dispatchMessage(Handler.java:99)\n\tat android.os.Looper.loopOnce(Looper.java:226)\n\tat android.os.Looper.loop(Looper.java:313)\n\tat android.app.ActivityThread.main(ActivityThread.java:8741)\n\tat java.lang.reflect.Method.invoke(Native Method)\n\tat com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:571)\n\tat com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1067)\n"
+    },
+    {
+      "id": 142,
+      "timestamp": 1783880799222,
+      "formattedDate": "12 Jul 2026 21:26:39 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 141,
+      "timestamp": 1783880798668,
+      "formattedDate": "12 Jul 2026 21:26:38 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 140,
+      "timestamp": 1783880798188,
+      "formattedDate": "12 Jul 2026 21:26:38 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 139,
+      "timestamp": 1783880792865,
+      "formattedDate": "12 Jul 2026 21:26:32 +0300",
+      "level": "INFO",
+      "tag": "MainActivity",
+      "message": "User clicked login"
+    },
+    {
+      "id": 138,
+      "timestamp": 1783880768528,
+      "formattedDate": "12 Jul 2026 21:26:08 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 137,
+      "timestamp": 1783880768310,
+      "formattedDate": "12 Jul 2026 21:26:08 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 136,
+      "timestamp": 1783880768029,
+      "formattedDate": "12 Jul 2026 21:26:08 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 133,
+      "timestamp": 1783879215479,
+      "formattedDate": "12 Jul 2026 21:00:15 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 132,
+      "timestamp": 1783879215147,
+      "formattedDate": "12 Jul 2026 21:00:15 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 129,
+      "timestamp": 1783860644020,
+      "formattedDate": "12 Jul 2026 15:50:44 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 128,
+      "timestamp": 1783860643622,
+      "formattedDate": "12 Jul 2026 15:50:43 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 127,
+      "timestamp": 1783860643374,
+      "formattedDate": "12 Jul 2026 15:50:43 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 126,
+      "timestamp": 1783854946858,
+      "formattedDate": "12 Jul 2026 14:15:46 +0300",
+      "level": "WARNING",
+      "tag": "BoardActivity",
+      "message": "Custom to log"
+    },
+    {
+      "id": 124,
+      "timestamp": 1783852612016,
+      "formattedDate": "12 Jul 2026 13:36:52 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 123,
+      "timestamp": 1783852611068,
+      "formattedDate": "12 Jul 2026 13:36:51 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 122,
+      "timestamp": 1783852605545,
+      "formattedDate": "12 Jul 2026 13:36:45 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 121,
+      "timestamp": 1783851928518,
+      "formattedDate": "12 Jul 2026 13:25:28 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 120,
+      "timestamp": 1783851928477,
+      "formattedDate": "12 Jul 2026 13:25:28 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 117,
+      "timestamp": 1782921548962,
+      "formattedDate": "01 Jul 2026 18:59:08 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    },
+    {
+      "id": 116,
+      "timestamp": 1782921548795,
+      "formattedDate": "01 Jul 2026 18:59:08 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 115,
+      "timestamp": 1782921548616,
+      "formattedDate": "01 Jul 2026 18:59:08 +0300",
+      "level": "ERROR",
+      "tag": "MainActivity",
+      "message": "Failed to save profile"
+    },
+    {
+      "id": 114,
+      "timestamp": 1782921548447,
+      "formattedDate": "01 Jul 2026 18:59:08 +0300",
+      "level": "WARNING",
+      "tag": "MainActivity",
+      "message": "Slow network"
+    },
+    {
+      "id": 113,
+      "timestamp": 1782921548214,
+      "formattedDate": "01 Jul 2026 18:59:08 +0300",
+      "level": "DEBUG",
+      "tag": "MainActivity",
+      "message": "Loading data"
+    }
+  ]
+}
