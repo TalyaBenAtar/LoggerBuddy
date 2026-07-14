@@ -18,7 +18,8 @@ LoggerBuddy was built to simplify debugging during development, QA, beta testing
 - [🎯 Project Goals](#-project-goals)
 - [✨ Features](#-features)
 - [🏗 Architecture](#-architecture)
-- [📸 Screenshots](#-screenshots)
+- [📸 LoggerBuddy Console Screenshots](#-loggerbuddy-console-screenshots)
+- [📱 Demo Application Screenshots](#-demo-application-screenshots)
 - [🎥 Demo Video](#-demo-video)
 - [🚀 Installation](#-installation)
 - [📋 Requirements](#-requirements)
@@ -268,7 +269,7 @@ docs/remote-dashboard/
 
 ---
 
-# 📱 Demo Application
+# 📱 Demo Application Screenshots
 
 The repository includes a demo application showcasing how LoggerBuddy can be integrated into an Android project.
 
