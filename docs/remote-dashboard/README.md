@@ -55,19 +55,27 @@ The example dashboard supports:
 
 # 📸 Dashboard Screenshots
 
-| Home | Statistics | Search |
-|:---:|:---:|:---:|
-| <img src="dashboard-screenshots/home.png" width="260"/> | <img src="dashboard-screenshots/statistics.png" width="260"/> | <img src="dashboard-screenshots/search.png" width="260"/> |
+| Home |  
+|:---:|
+| <img width="1581" height="923" alt="dashboard_main_loggerbuddy" src="https://github.com/user-attachments/assets/3b54465d-1e78-436a-b9cc-b399bd9dd84e" /> |
 
-| Filters | Details | Charts |
-|:---:|:---:|:---:|
-| <img src="dashboard-screenshots/filter.png" width="260"/> | <img src="dashboard-screenshots/details.png" width="260"/> | <img src="dashboard-screenshots/charts.png" width="260"/> |
+| Filtering |
+|:---:|
+| <img width="1585" height="918" alt="dashboard_filtering_example_loggerbuddy" src="https://github.com/user-attachments/assets/133668ae-8b2d-4d8b-8c7b-af171b340245" /> |
+
+| Crash Filtering |
+|:---:|
+| <img width="1587" height="925" alt="dashboard_crash_filtering_loggerbuddy" src="https://github.com/user-attachments/assets/f42cee67-1abb-4432-851b-011cc9a77c1b" /> |
+
+| Log Details |
+|:---:|
+| <img width="1587" height="826" alt="dashboard_log_details_loggerbuddy" src="https://github.com/user-attachments/assets/f934536f-6ddc-4981-872b-3cd0026a28a2" /> | 
 
 ---
 
 # 🎥 Dashboard Demo
 
-*(Place dashboard video here.)*
+> https://drive.google.com/file/d/1uY-49gfthPlT1iUIub_97PIDrsZpkA2r/view?usp=sharing
 
 ---
 
