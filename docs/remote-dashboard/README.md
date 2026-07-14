@@ -210,7 +210,7 @@ See
 
 ```
 
-dashboard-ai-prompt.md
+dashboard-retool-ai-prompt.md
 
 ```
 
@@ -224,7 +224,7 @@ Import it directly into Retool.
 
 ```
 
-dashboard-export.json
+loggerbuddy_sample-export.json
 
 ```
 
