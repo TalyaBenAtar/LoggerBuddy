@@ -839,8 +839,6 @@ LoggerBuddy was designed to handle common situations that frequently occur in re
 | Maximum storage reached | Automatic cleanup removes older logs when enabled through configuration. | [Automatic maximum-storage cleanup](https://github.com/TalyaBenAtar/LoggerBuddy/blob/5c3ff4817098f65ed9a0e243d271ec877e3e0a22/loggerbuddy/src/main/java/com/example/loggerbuddy/data/LogStorage.kt#L108-L119) |
 | Normal log without exception | Normal logs are stored and displayed without requiring exception data; stack-trace text is added only when a Throwable is explicitly logged or an uncaught crash is captured. | [Normal log creation without exception data](https://github.com/TalyaBenAtar/LoggerBuddy/blob/5c3ff4817098f65ed9a0e243d271ec877e3e0a22/loggerbuddy/src/main/java/com/example/loggerbuddy/LoggerBuddy.kt#L302-L338) |
 
-> **Note:**  
-> The placeholder links above should be replaced with GitHub **permalinks** pointing directly to the implementation of each feature. Using permalinks ensures the documentation always references the exact code version, even if files change in future commits.
 
 ---
 
