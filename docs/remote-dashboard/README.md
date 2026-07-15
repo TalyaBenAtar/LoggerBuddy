@@ -22,6 +22,19 @@ The dashboard was designed to demonstrate what can be built using LoggerBuddy's 
 
 ---
 
+# 🌐 Live Retool Dashboard Example
+
+Want to see LoggerBuddy's exported logs visualized in a real dashboard?
+
+The live demo below showcases an example implementation built with Retool using the same JSON format produced by LoggerBuddy. It demonstrates how exported logs can be transformed into an interactive debugging experience with searching, filtering, statistics, and log inspection.
+
+🔗 **Live Dashboard:**  
+https://talya159321--loggerbuddy-dashboard.retool.app/
+
+> **Note:** This dashboard is provided as a demonstration only. It is not part of the LoggerBuddy library, and developers are encouraged to customize or build their own dashboard using any technology they prefer.
+
+---
+
 # Why Retool?
 
 Retool was chosen for the example implementation because it allows developers to build dashboards quickly with minimal setup while remaining completely customizable.
