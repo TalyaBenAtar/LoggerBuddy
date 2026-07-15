@@ -433,7 +433,7 @@ class LogViewerActivity : AppCompatActivity() {
      * Displays matching logs or the appropriate empty state.
      */
     private fun updateLogList(filteredLogs: List<LogEntry>) {
-//        logsRecyclerView.adapter = LogAdapter(filteredLogs)
+
         logsRecyclerView.adapter = LogAdapter(
             logs = filteredLogs,
             onLogClicked = { log ->
