@@ -828,16 +828,16 @@ LoggerBuddy was designed to handle common situations that frequently occur in re
 
 | Edge Case | Behavior | Implementation |
 |-----------|----------|----------------|
-| Application crashes unexpectedly | Uncaught exceptions are automatically captured and stored as ERROR logs before application termination. | *(GitHub permalink)* |
-| Exception logging | Complete exception messages and stack traces are preserved for easier debugging. | *(GitHub permalink)* |
-| No custom tag provided | LoggerBuddy automatically detects the calling class and uses it as the log tag. | *(GitHub permalink)* |
-| Empty search results | The console displays an empty state instead of failing or showing invalid data. | *(GitHub permalink)* |
-| Multiple active filters | Search, date and level filters are combined safely using cross-filtering. | *(GitHub permalink)* |
-| Export after filtering | Developers may export either the filtered logs or the complete database. | *(GitHub permalink)* |
-| Export with no logs | An empty JSON file containing metadata is generated instead of causing an error. | *(GitHub permalink)* |
-| Very large log collections | RecyclerView virtualization keeps scrolling smooth while Room efficiently handles storage. | *(GitHub permalink)* |
-| Maximum storage reached | Automatic cleanup removes older logs when enabled through configuration. | *(GitHub permalink)* |
-| Log without stack trace | Logs remain fully functional while the stack trace field is simply omitted. | *(GitHub permalink)* |
+| Application crashes unexpectedly | Uncaught exceptions are automatically captured and stored as ERROR logs before application termination. | [Crash capture and synchronous storage](https://github.com/TalyaBenAtar/LoggerBuddy/blob/21043f13c6f50b319f0c3cd0c240f6c4f61b5b03/loggerbuddy/src/main/java/com/example/loggerbuddy/LoggerBuddy.kt#L392-L443) |
+| Exception logging | Complete exception messages and stack traces are preserved for easier debugging. | [Exception message and stack trace formatting](https://github.com/TalyaBenAtar/LoggerBuddy/blob/21043f13c6f50b319f0c3cd0c240f6c4f61b5b03/loggerbuddy/src/main/java/com/example/loggerbuddy/LoggerBuddy.kt#L347-L373) |
+| No custom tag provided | LoggerBuddy automatically detects the calling class and uses it as the log tag. | [Automatic caller-tag detection](https://github.com/TalyaBenAtar/LoggerBuddy/blob/21043f13c6f50b319f0c3cd0c240f6c4f61b5b03/loggerbuddy/src/main/java/com/example/loggerbuddy/LoggerBuddy.kt#L474) |
+| Empty search results | The console displays an empty state instead of failing or showing invalid data. | [Empty console and search-result states](https://github.com/TalyaBenAtar/LoggerBuddy/blob/5c3ff4817098f65ed9a0e243d271ec877e3e0a22/loggerbuddy/src/main/java/com/example/loggerbuddy/ui/LogViewerActivity.kt#L432-L460) |
+| Multiple active filters | Search, date and level filters are combined safely using cross-filtering. | [Search, level and date cross-filtering](https://github.com/TalyaBenAtar/LoggerBuddy/blob/5c3ff4817098f65ed9a0e243d271ec877e3e0a22/loggerbuddy/src/main/java/com/example/loggerbuddy/filter/LogFilterEngine.kt#L10-L31) |
+| Export after filtering | Developers may export either the filtered logs or the complete database. | [Filtered-log JSON export](https://github.com/TalyaBenAtar/LoggerBuddy/blob/5c3ff4817098f65ed9a0e243d271ec877e3e0a22/loggerbuddy/src/main/java/com/example/loggerbuddy/ui/LogViewerActivity.kt#L759-L796) |
+| Export with no logs | Exporting an empty log collection is rejected safely with a developer-readable failure result instead of creating an invalid file or throwing an uncaught exception. | [Safe handling of empty exports](https://github.com/TalyaBenAtar/LoggerBuddy/blob/5c3ff4817098f65ed9a0e243d271ec877e3e0a22/loggerbuddy/src/main/java/com/example/loggerbuddy/export/LogExporter.kt#L18-L73) |
+| Very large log collections | Logs are displayed using RecyclerView view holders, while persistence is handled through Room and background storage operations. | [RecyclerView-backed log rendering](https://github.com/TalyaBenAtar/LoggerBuddy/blob/5c3ff4817098f65ed9a0e243d271ec877e3e0a22/loggerbuddy/src/main/java/com/example/loggerbuddy/ui/LogAdapter.kt#L17) |
+| Maximum storage reached | Automatic cleanup removes older logs when enabled through configuration. | [Automatic maximum-storage cleanup](https://github.com/TalyaBenAtar/LoggerBuddy/blob/5c3ff4817098f65ed9a0e243d271ec877e3e0a22/loggerbuddy/src/main/java/com/example/loggerbuddy/data/LogStorage.kt#L108-L119) |
+| Normal log without exception | Normal logs are stored and displayed without requiring exception data; stack-trace text is added only when a Throwable is explicitly logged or an uncaught crash is captured. | [Normal log creation without exception data](https://github.com/TalyaBenAtar/LoggerBuddy/blob/5c3ff4817098f65ed9a0e243d271ec877e3e0a22/loggerbuddy/src/main/java/com/example/loggerbuddy/LoggerBuddy.kt#L302-L338) |
 
 > **Note:**  
 > The placeholder links above should be replaced with GitHub **permalinks** pointing directly to the implementation of each feature. Using permalinks ensures the documentation always references the exact code version, even if files change in future commits.
